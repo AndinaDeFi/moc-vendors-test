@@ -1,7 +1,7 @@
 const fs = require("fs");
 const Web3 = require("web3");
 const BN = require("bn.js");
-require('dotenv').config();
+require("dotenv").config();
 
 const web3 = new Web3("https://public-node.testnet.rsk.co:443");
 
@@ -20,13 +20,21 @@ const addressFrom = process.env.USER_ADDRESS;
 (async () => {
   const amount = new BN(0.00000123 * Math.pow(10, 18));
 
+  const vendorAddress = "0x00add81c1cfae0ea2d487490cde322cb7e77aa5f";
+
   const commission = new BN(
-    await mocInrate.methods.calcCommissionValue(amount, new BN(3)).call()
+    await mocInrate.methods.calcCommissionValue(amount, 3).call()
   );
 
-  const value = amount.add(commission);
+  const vendorMarkup = new BN(
+    await mocInrate.methods.calculateVendorMarkup(vendorAddress, amount).call()
+  );
 
-  const vendorAddress = "0x00add81c1cfae0ea2d487490cde322cb7e77aa5f";
+  const value = amount.add(commission).add(vendorMarkup);
+
+  const estimateGas = await moc.methods
+    .mintDocVendors(value, vendorAddress)
+    .estimateGas({ from: addressFrom, value: value });
 
   const encodedCall = moc.methods
     .mintDocVendors(value, vendorAddress)
@@ -37,7 +45,8 @@ const addressFrom = process.env.USER_ADDRESS;
       from: addressFrom,
       to: moc._address,
       value: value,
-      gas: "800000",
+      gas: estimateGas * 2,
+      gasLimit: estimateGas * 2,
       data: encodedCall,
     },
     privateKey
