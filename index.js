@@ -33,11 +33,11 @@ const addressFrom = process.env.USER_ADDRESS;
   const value = amount.add(commission).add(vendorMarkup);
 
   const estimateGas = await moc.methods
-    .mintDocVendors(value, vendorAddress)
+    .mintDocVendors(amount, vendorAddress)
     .estimateGas({ from: addressFrom, value: value });
 
   const encodedCall = moc.methods
-    .mintDocVendors(value, vendorAddress)
+    .mintDocVendors(amount, vendorAddress)
     .encodeABI();
 
   const transaction = await web3.eth.accounts.signTransaction(
