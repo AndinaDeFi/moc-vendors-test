@@ -6,11 +6,11 @@ require("dotenv").config();
 const web3 = new Web3("https://public-node.testnet.rsk.co:443");
 
 const moc = new web3.eth.Contract(
-  JSON.parse(fs.readFileSync("./moc.json", "utf8")),
+  JSON.parse(fs.readFileSync("./contracts/moc.json", "utf8")),
   "0x2820f6d4d199b8d8838a4b26f9917754b86a0c1f"
 );
 const mocInrate = new web3.eth.Contract(
-  JSON.parse(fs.readFileSync("./moc_inrate.json", "utf8")),
+  JSON.parse(fs.readFileSync("./contracts/moc_inrate.json", "utf8")),
   "0x76790f846faaf44cf1b2d717d0a6c5f6f5152b60"
 );
 
