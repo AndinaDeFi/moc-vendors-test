@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "doc-mint-test": "node doc-mint-test.js",
+    "vendor-status": "node vendor-status.js",
+    "vendor-status-ethers": "node vendor-status-ethers.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "bn.js": "^5.2.0",
+    "ethers": "^5.6.9",
     "web3": "^1.7.3"
   },
   "devDependencies": {
