@@ -2,12 +2,17 @@ const fs = require("fs");
 require("dotenv").config();
 const { ethers, BigNumber } = require("ethers");
 
-// 2- CHOOSE NETWORK:
-const NETWORK = 'testnet';
-// const NETWORK = 'mainnet';
+// 2 - CHOOSE NETWORK (uncomment correct):
+// const NETWORK = 'testnet';
+const NETWORK = 'mainnet';
 console.log(`--- CONFIGURING FOR ${NETWORK.toUpperCase()} ---`);
 
-// 3- SET UP AMOUNT TO STAKE
+// 3 - CHOOSE PLATFORM (uncomment correct):
+const PLATFORM = 'MOC';
+// const PLATFORM = 'ROC';
+console.log(`--- PLATFORM: ${PLATFORM} ---`);
+
+// 4- SET UP AMOUNT TO STAKE
 const amountToStake = BigNumber.from(1e18.toString()) // 1e18 = 1 MOC
 
 // CONFIG END ------------------
