@@ -13,7 +13,8 @@ const PLATFORM = 'MOC';
 console.log(`--- PLATFORM: ${PLATFORM} ---`);
 
 // 4- SET UP AMOUNT TO STAKE
-const amountToStake = BigNumber.from(1e18.toString()) // 1e18 = 1 MOC
+// const amountToStake = BigNumber.from(1e18.toString()) // 1e18 = 1 MOC
+const amountToStake = BigNumber.from("0x2d66a5b4bc1da600000") // = 13400 MOC ~= 950 USD at 04/07/2022
 
 // CONFIG END ------------------
 NODE_URL = NETWORK == 'testnet' ?
