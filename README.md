@@ -22,9 +22,10 @@ Vendor utilities. Checks current vendor status.
 
 ### How to run
 1. Follow main setup (although _address_ in `.env` is not needed)
-2. Choose network (in `vendor-status.js` line 5)
-3. Setup address to use (in `vendor-status.js` line 10)
-4. Run `npm run vendor-status`
+2. Choose network (*testnet* or *mainnet*, in `vendor-status.js` line 6-7)
+3. Choose platform (*MOC* or *ROC*, in `vendor-status.js` line 11-12)
+4. Setup address to use (in `vendor-status.js` line 17-18)
+5. Run `npm run vendor-status`
 
 ### Staking MOC
 
@@ -32,7 +33,8 @@ Stakes vendor's MOC.
 
 ### How to run
 1. Follow main setup (although _address_ in `.env` is not needed)
-2. Choose network (in `vendor-staking.js` line 5)
-3. Setup amount to stake (in `vendor-status.js` line 10)
-4. Run `npm run vendor-staking`
+2. Choose network (in `vendor-staking.js` line 6-7)
+3. Choose platform (*MOC* or *ROC*, in `vendor-staking.js` line 11-12)
+4. Setup amount to stake (in `vendor-staking.js` line 16)
+5. Run `npm run vendor-staking`
 
