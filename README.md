@@ -34,7 +34,7 @@ Stakes vendor's MOC.
 ### How to run
 1. Follow main setup (although _address_ in `.env` is not needed)
 2. Choose network (in `vendor-staking.js` line 5)
-3. Choose platform (*MOC* or *ROC*, in `vendor-status.js` line 8)
-4. Setup amount to stake (in `vendor-status.js` line 10)
+3. Choose platform (*MOC* or *ROC*, in `vendor-staking.js` line 8)
+4. Setup amount to stake (in `vendor-staking.js` line 10)
 5. Run `npm run vendor-staking`
 
