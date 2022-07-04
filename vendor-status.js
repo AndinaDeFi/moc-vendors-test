@@ -12,7 +12,7 @@ const PLATFORM = 'MOC';
 // const PLATFORM = 'ROC';
 console.log(`--- PLATFORM: ${PLATFORM} ---`);
 
-// 3 - LEAVE EMPTY FOR USING OWN PRIVATE KEY OR WRITE AN ADDRESS
+// 4 - LEAVE EMPTY FOR USING OWN PRIVATE KEY OR WRITE AN ADDRESS
 // (uncomment correct)
 // let vendorAddress = '';
 let vendorAddress = '0x370b58caf99780ba26da1600684a0f281421be2f';
