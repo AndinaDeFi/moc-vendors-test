@@ -3,8 +3,8 @@ require("dotenv").config();
 const { ethers, BigNumber } = require("ethers");
 
 // 2 - CHOOSE NETWORK (uncomment correct):
-// const NETWORK = 'testnet';
-const NETWORK = 'mainnet';
+const NETWORK = 'testnet';
+// const NETWORK = 'mainnet';
 console.log(`--- CONFIGURING FOR ${NETWORK.toUpperCase()} ---`);
 
 // 3 - CHOOSE PLATFORM (uncomment correct):
@@ -54,10 +54,10 @@ const mocTokenContract = new ethers.Contract(TOKEN_CONTRACT_ADDRESS, mocTokenAbi
         VENDORS_CONTRACT_ADDRESS,
         amountToStake);
     await approveTx.wait();
-    console.log(`Approved ${amountToStake} MOC to vendors contract`);
+    console.log(`Approved ${amountToStake / BigNumber.from(1e18.toString())} MOC to vendors contract`);
 
     // Stake MOC tokens
     const stakeTx = await mocVendorsContract.addStake(amountToStake);
     await stakeTx.wait();
-    console.log(`Added ${amountToStake} MOC to stake`);
+    console.log(`Added ${amountToStake / BigNumber.from(1e18.toString())} MOC to stake`);
 })()

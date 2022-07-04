@@ -1,6 +1,6 @@
 const fs = require("fs");
 require("dotenv").config();
-const { ethers } = require("ethers");
+const { ethers, BigNumber } = require("ethers");
 
 // 2 - CHOOSE NETWORK (uncomment correct):
 // const NETWORK = 'testnet';
@@ -8,8 +8,8 @@ const NETWORK = 'mainnet';
 console.log(`--- CONFIGURING FOR ${NETWORK.toUpperCase()} ---`);
 
 // 3 - CHOOSE PLATFORM (uncomment correct):
-const PLATFORM = 'MOC';
-// const PLATFORM = 'ROC';
+// const PLATFORM = 'MOC';
+const PLATFORM = 'ROC';
 console.log(`--- PLATFORM: ${PLATFORM} ---`);
 
 // 4 - LEAVE EMPTY FOR USING OWN PRIVATE KEY OR WRITE AN ADDRESS
@@ -47,11 +47,14 @@ const signer = new ethers.Wallet(privateKey, provider);
     console.log(`Vendor ${isActive ? 'activo' : 'inactivo'}`);
 
     const markup = await mocVendorContract.getMarkup(vendorAddress);
-    console.log(`Vendor markup: ${markup}`);
+    console.log(`Vendor markup: ${markup / BigNumber.from(1e18.toString()) * 100} %`);
 
-    const totalPaid = await mocVendorContract.getTotalPaidInMoC(vendorAddress);
-    console.log(`Total paid in MOC (after last settlement): ${totalPaid}`);
+    const totalPaid = (await mocVendorContract.getTotalPaidInMoC(vendorAddress)) / BigNumber.from(1e18.toString());
+    console.log(`Total paid (after last settlement): ${totalPaid}  MOC or equivalent`);
 
-    const currentStake = await mocVendorContract.getStaking(vendorAddress);
-    console.log(`Vendor current staked MOC: ${currentStake}`);
+    const currentStake = (await mocVendorContract.getStaking(vendorAddress)) / BigNumber.from(1e18.toString());
+    console.log(`Vendor current stake: ${currentStake} MOC`);
+
+    const marginToReceive = currentStake - totalPaid;
+    console.log(`Vendor can still get ${Math.max(marginToReceive, 0)} MOC or equivalent in fees.`);
 })()
