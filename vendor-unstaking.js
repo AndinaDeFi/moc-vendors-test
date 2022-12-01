@@ -8,15 +8,15 @@ const NETWORK = 'testnet';
 console.log(`--- CONFIGURING FOR ${NETWORK.toUpperCase()} ---`);
 
 // 3 - CHOOSE PLATFORM (uncomment correct):
-const PLATFORM = 'MOC';
-// const PLATFORM = 'ROC';
+// const PLATFORM = 'MOC';
+const PLATFORM = 'ROC';
 console.log(`--- PLATFORM: ${PLATFORM} ---`);
 
-// 4- SET UP AMOUNT TO STAKE
-// const amountToStake = BigNumber.from(1e18.toString()) // 1e18 = 1 MOC
-// const amountToStake = BigNumber.from("0x2d66a5b4bc1da600000") // = 13400 MOC ~= 950 USD at 04/07/2022
+// 4- SET UP AMOUNT TO UNSTAKE
+// const amountToUnstake = BigNumber.from(1e18.toString()) // 1e18 = 1 MOC
+// const amountToUnstake = BigNumber.from("0x2d66a5b4bc1da600000") // = 13400 MOC ~= 950 USD at 04/07/2022
 // It can be also set via utils.parseEther():
-const amountToStake = utils.parseEther("5000");
+const amountToUnstake = utils.parseEther("5000");
 
 // CONFIG END ------------------
 NODE_URL = NETWORK == 'testnet' ?
@@ -52,15 +52,8 @@ const mocTokenContract = new ethers.Contract(TOKEN_CONTRACT_ADDRESS, mocTokenAbi
     const vendorAddress = await signer.getAddress();
     console.log(`Vendor address: ${vendorAddress}`);
 
-    // Approve MOC tokens to vendor
-    const approveTx = await mocTokenContract.approve(
-        VENDORS_CONTRACT_ADDRESS,
-        amountToStake);
-    await approveTx.wait();
-    console.log(`Approved ${amountToStake / BigNumber.from(1e18.toString())} MOC to vendors contract`);
-
-    // Stake MOC tokens
-    const stakeTx = await mocVendorsContract.addStake(amountToStake);
-    await stakeTx.wait();
-    console.log(`Added ${amountToStake / BigNumber.from(1e18.toString())} MOC to stake`);
+    // Unstake MOC tokens
+    const unstakeTx = await mocVendorsContract.removeStake(amountToUnstake);
+    await unstakeTx.wait();
+    console.log(`Removed ${amountToUnstake / BigNumber.from(1e18.toString())} MOC from stake`);
 })()

@@ -6,7 +6,8 @@
   "scripts": {
     "doc-mint-test": "node doc-mint-test.js",
     "vendor-status": "node vendor-status.js",
-    "vendor-status-ethers": "node vendor-status-ethers.js",
+    "vendor-staking": "node vendor-staking.js",
+    "vendor-unstaking": "node vendor-unstaking.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
